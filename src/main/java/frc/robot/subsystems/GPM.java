@@ -23,25 +23,31 @@ import edu.wpi.first.wpilibj.DigitalInput;
  * Add your docs here.
  */
 public class GPM extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+  
+  public static GPM INSTANCE = new GPM();
+
+  public static GPM getInstance() {
+    if (INSTANCE == null) {
+      INSTANCE = new GPM();
+    }
+    return INSTANCE;
+  }
 
   //Define Motors for GPM/
-  public WPI_VictorSPX DorsalMotor1;
-  public WPI_TalonSRX DorsalMotor2;
-  public WPI_VictorSPX FourBarMotor1;
-  public WPI_VictorSPX FourBarMotor2;
+  private WPI_VictorSPX DorsalMotor1;
+  private WPI_TalonSRX DorsalMotor2;
+  private WPI_VictorSPX FourBarMotor1;
+  private WPI_VictorSPX FourBarMotor2;
 
   //Define Limit Switches for GPM/
-  public DigitalInput DorsalLimitUp, DorsalLimitDown;
-  public DigitalInput FourBarFwd, FourBarBack;
+  private DigitalInput DorsalLimitUp, DorsalLimitDown;
+  private DigitalInput FourBarFwd, FourBarBack;
 
   //Define Pot/
-  public AnalogPotentiometer DorsalPot, FourBarPot;
+  private AnalogPotentiometer DorsalPot, FourBarPot;
 
   //Define Line Sensor/
-  public DigitalInput LineSensorLeft, LineSensorCenter, LineSensorRight;
-
+  private DigitalInput LineSensorLeft, LineSensorCenter, LineSensorRight;
 
   public GPM(){
     //Initialize Motors for GPM/
@@ -75,7 +81,9 @@ public class GPM extends Subsystem {
   LineSensorLeft.setName("sensor","LeftLineSensor");
   LineSensorCenter.setName("sensor","CenterLineSensor");
   LineSensorRight.setName("sensor","RightLineSensor");  
+  
   }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

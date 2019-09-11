@@ -64,24 +64,57 @@ public class OI {
   public Joystick driver, operator;
 
    //XBox Controller1 Buttons/
-   public Button A1,B1,X1,Y1;
-   public Button A2,B2,X2,Y2;
+   public Button ADr,BDr,XDr,YDr;
+   public Button AOp,BOp,XOp,YOp, LeftBumpOp, RightBumpOp;
 
 
   public OI() {
     
     //Initialize Xbox Controller or Joystick/
+    // Driver is joystick 0
+    // Operator is joystick 1
     driver = new Joystick(0);
     operator = new Joystick(1);
 
-    A2 = new JoystickButton(operator,1);
-    B2 = new JoystickButton(operator,2);
-    X2 = new JoystickButton(operator,3);
+    /* We should make a map, but until then I took these from triplehelix
+	//XboxOne Joysticks
+	public static final int LEFT_STICK_X = 0;
+	public static final int LEFT_STICK_Y = 1;
+	public static final int LEFT_TRIGGER = 2;
+	public static final int RIGHT_TRIGGER = 3;
+	public static final int RIGHT_STICK_X = 4;
+	public static final int RIGHT_STICK_Y = 5;
+	
+	//XboxOne Buttons
+	public static final int A = 1;
+	public static final int B = 2;
+	public static final int X = 3;
+	public static final int Y = 4;
+	public static final int LB = 5;
+	public static final int RB = 6;
+	public static final int LOGO_LEFT = 7;
+	public static final int LOGO_RIGHT = 8;
+	public static final int LEFT_STICK_BUTTON = 9;
+  public static final int RIGHT_STICK_BUTTON = 10;
+  */
 
 
-    B2.whenPressed(new StarBurstOpen());
-    A2.whenPressed(new StarBurstClosed());
-    X2.whenPressed(new StarBurstOff());
+    AOp = new JoystickButton(operator,1);
+    BOp = new JoystickButton(operator,2);
+    XOp = new JoystickButton(operator,3);
+
+    LeftBumpOp = new JoystickButton(operator, 5);
+    RightBumpOp= new JoystickButton(operator, 6);
+
+
+    //Added starburst off to test button functionality without having to trigger limit switches
+    BOp.whenPressed(new StarBurstOpen());
+    AOp.whenPressed(new StarBurstClosed());
+    XOp.whenPressed(new StarBurstOff());
+
+    //Intake functions
+    LeftBumpOp.whileHeld(new EatCargo());
+    RightBumpOp.whileHeld(new SpitCargo());
     
   }
 

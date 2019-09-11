@@ -8,14 +8,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
+import frc.robot.subsystems.GPM;
+
 
 public class GoHatchDorsal extends Command {
   public GoHatchDorsal()
    {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.ShangoGPM);
+    requires(GPM.getInstance());
   }
 
   // Called just before this Command runs the first time
@@ -26,13 +27,13 @@ public class GoHatchDorsal extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.ShangoGPM.MoveDown(-0.25);
+    GPM.getInstance().MoveDown(0.25);
     
 }
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.ShangoGPM.isDown();
+    return GPM.getInstance().isDown();
   }
 
   // Called when another command which requires one or more of the same

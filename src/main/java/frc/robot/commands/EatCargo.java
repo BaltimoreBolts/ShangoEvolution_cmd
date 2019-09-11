@@ -8,13 +8,13 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
+import frc.robot.subsystems.Intake;
 
 public class EatCargo extends Command {
   public EatCargo() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.ShangoIntake);
+    requires(Intake.getInstance());
   }
 
   // Called just before this Command runs the first time
@@ -25,19 +25,21 @@ public class EatCargo extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.ShangoIntake.intake();
+    Intake.getInstance().intake();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.ShangoIntake.hasCargo();
+    return false;
+    // Should put this back after testing. Stop intake when we have cargo? 
+    //return Intake.getInstance().hasCargo();
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.ShangoIntake.outtake();
+    Intake.getInstance().MotorOff();
   }
 
   // Called when another command which requires one or more of the same

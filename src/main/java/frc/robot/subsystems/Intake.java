@@ -14,8 +14,16 @@ import edu.wpi.first.wpilibj.DigitalInput;
  * Add your docs here.
  */
 public class Intake extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+
+  public static Intake INSTANCE = new Intake();
+
+  public static Intake getInstance() {
+    if (INSTANCE == null) {
+      INSTANCE = new Intake();
+    }
+    return INSTANCE;
+  }
+
   public WPI_TalonSRX CargoIntakeMotor;
   public DigitalInput CargoSensor;
   

@@ -27,15 +27,12 @@ public class StarBurst extends Subsystem {
     return INSTANCE;
 
   }
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
 
   //Define Motors for GPM/
   public VictorSP StarBurstMotor;
 
   //Define Limit Switches for GPM/
   public DigitalInput StarBurstLimitOpen, StarBurstLimitClose;
-  
   
   public StarBurst(){
       //Initialize Motors for GPM/

@@ -20,7 +20,7 @@ public class DriveTrain extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  // Define macanumdrive variables
+  // Define mecanumdrive variables
   private MecanumDrive RobotDT;
   private WPI_TalonSRX LeftFront;
   private WPI_TalonSRX RightFront;

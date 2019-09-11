@@ -8,13 +8,13 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
+import frc.robot.subsystems.Intake;
 
 public class SpitCargo extends Command {
   public SpitCargo() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.ShangoIntake);
+    requires(Intake.getInstance());
   }
 
   // Called just before this Command runs the first time
@@ -25,7 +25,7 @@ public class SpitCargo extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.ShangoIntake.outtake();
+    Intake.getInstance().outtake();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -37,7 +37,7 @@ public class SpitCargo extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.ShangoIntake.MotorOff();
+    Intake.getInstance().MotorOff();
   }
 
   // Called when another command which requires one or more of the same
