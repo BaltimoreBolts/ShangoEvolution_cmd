@@ -27,7 +27,7 @@ public class ShangoDrive extends Command {
   
   @Override
   protected void execute() {
-    Robot.ShangoDT.DriveShango(OI.getInstance().getDriveX(), OI.getInstance().getDriveY()); // Need to add Xbox values instead of 1's
+    Robot.ShangoDT.DriveShango(OI.getInstance().getDriveX(), OI.getInstance().getDriveY()); 
   }
 
   // Make this return true when this Command no longer needs to run execute()

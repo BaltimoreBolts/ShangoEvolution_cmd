@@ -36,7 +36,7 @@ public class StarBurstOpen extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false; //StarBurst.getInstance().isOpen();
+    return StarBurst.getInstance().isOpen();
     
     //Starburst open limit = true/
   }
@@ -44,7 +44,7 @@ public class StarBurstOpen extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    //StarBurst.getInstance().MotorOff();
+    StarBurst.getInstance().MotorOff();
   }
 
   // Called when another command which requires one or more of the same

@@ -8,7 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //Import Library for Star Burst Motor/
 import edu.wpi.first.wpilibj.VictorSP;
 
@@ -55,10 +55,10 @@ public class StarBurst extends Subsystem {
     
   }
   public void open(){
-    this.StarBurstMotor.set(0.07);
+    this.StarBurstMotor.set(0.2);
   }
   public void close(){
-    this.StarBurstMotor.set(-0.07);
+    this.StarBurstMotor.set(-0.2);
   }
   public void MotorOff(){
     this.StarBurstMotor.set(0);
@@ -69,4 +69,15 @@ public class StarBurst extends Subsystem {
   public boolean isClosed(){
     return this.StarBurstLimitClose.get();
   }
+
+  @Override
+  public void periodic() {
+    this.UpdateSmartDashboard();
+  }
+
+  public void UpdateSmartDashboard() {
+    SmartDashboard.putData("Starburst Open LS:", StarBurstLimitOpen);
+    SmartDashboard.putData("Starburst Close LS:", StarBurstLimitClose);
+  }
+
 }

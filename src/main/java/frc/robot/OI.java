@@ -65,7 +65,7 @@ public class OI {
 
    //XBox Controller1 Buttons/
    public Button ADr,BDr,XDr,YDr;
-   public Button AOp,BOp,XOp,YOp, LeftBumpOp, RightBumpOp;
+   public Button AOp,BOp,XOp,YOp, LeftBumpOp, RightBumpOp, LeftLogoOp, RightLogoOp;
 
 
   public OI() {
@@ -102,6 +102,9 @@ public class OI {
     AOp = new JoystickButton(operator,1);
     BOp = new JoystickButton(operator,2);
     XOp = new JoystickButton(operator,3);
+    LeftLogoOp = new JoystickButton(operator,7);
+    RightLogoOp = new JoystickButton(operator, 8);
+
 
     LeftBumpOp = new JoystickButton(operator, 5);
     RightBumpOp= new JoystickButton(operator, 6);
@@ -111,6 +114,9 @@ public class OI {
     BOp.whenPressed(new StarBurstOpen());
     AOp.whenPressed(new StarBurstClosed());
     XOp.whenPressed(new StarBurstOff());
+    YOp.whenPressed(new GoHatch());
+
+    ADr.whenPressed(new GoHome());
 
     //Intake functions
     LeftBumpOp.whileHeld(new EatCargo());
