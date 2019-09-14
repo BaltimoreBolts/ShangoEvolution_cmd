@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //Import Library for Star Burst Motor/
 import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.Counter;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 /**
@@ -33,6 +34,12 @@ public class StarBurst extends Subsystem {
 
   //Define Limit Switches for GPM/
   public DigitalInput StarBurstLimitOpen, StarBurstLimitClose;
+
+  public static enum StarBurstState {
+    OPEN, CLOSE
+  };
+
+  public StarBurstState CurrentState;
   
   public StarBurst(){
       //Initialize Motors for GPM/
@@ -42,6 +49,12 @@ public class StarBurst extends Subsystem {
     StarBurstLimitOpen = new DigitalInput(5);
     StarBurstLimitClose = new DigitalInput(6);
 
+    if (StarBurstLimitOpen.get()) {
+      CurrentState = StarBurstState.OPEN;
+    } else {
+      CurrentState = StarBurstState.CLOSE;
+    }
+
     //StarBurst SmartDashboard stuff/
     /*StarBurstLimitOpen.setName("Starburst", "OpenLimitSwitch");
     StarBurstLimitClose.setName("Starburst", "ClosedLimitSwitch"); 
@@ -50,24 +63,26 @@ public class StarBurst extends Subsystem {
    @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
-
-    
+    // setDefaultCommand(new MySpecialCommand())
   }
   public void open(){
-    this.StarBurstMotor.set(0.25);
+    this.StarBurstMotor.set(0.3);
   }
   public void close(){
-    this.StarBurstMotor.set(-0.22);
+    this.StarBurstMotor.set(-0.3);
   }
   public void MotorOff(){
     this.StarBurstMotor.set(0);
   }
   public boolean isOpen(){
-    return this.StarBurstLimitOpen.get();
+    return StarBurstLimitOpen.get();
   }
   public boolean isClosed(){
-    return this.StarBurstLimitClose.get();
+    return StarBurstLimitClose.get();
+  }
+
+  public void setCurrentState(StarBurstState newState) {
+    this.CurrentState = newState;
   }
 
   @Override
@@ -78,6 +93,7 @@ public class StarBurst extends Subsystem {
   public void UpdateSmartDashboard() {
     SmartDashboard.putData("Starburst Open LS:", StarBurstLimitOpen);
     SmartDashboard.putData("Starburst Close LS:", StarBurstLimitClose);
+    SmartDashboard.putString("Current StarBurst State: ", CurrentState.toString());
   }
 
 }

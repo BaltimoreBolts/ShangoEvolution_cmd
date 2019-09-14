@@ -20,21 +20,25 @@ public class StarBurstClosed extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    //StarBurst.getInstance().StarBurstCloseCounter.reset();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     // Code to close the Starburst 
-    StarBurst.getInstance().close();
+    if (StarBurst.getInstance().CurrentState == StarBurst.StarBurstState.OPEN) {
+      StarBurst.getInstance().setCurrentState(StarBurst.StarBurstState.CLOSE);
+      StarBurst.getInstance().close();
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
     return StarBurst.getInstance().isClosed();
-
   }
+  
   // Called once after isFinished returns true
   @Override
   protected void end() {

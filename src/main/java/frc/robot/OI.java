@@ -104,23 +104,26 @@ public class OI {
     XOp = new JoystickButton(operator,3);
     //LeftLogoOp = new JoystickButton(operator,7);
     //RightLogoOp = new JoystickButton(operator, 8);
+    ADr = new JoystickButton(driver, 1);
+    BDr = new JoystickButton(driver, 2);
 
-
-    LeftBumpOp = new JoystickButton(operator, 5);
-    RightBumpOp= new JoystickButton(operator, 6);
+    //LeftBumpOp = new JoystickButton(operator, 5);
+   // RightBumpOp= new JoystickButton(operator, 6);
 
 
     //Added starburst off to test button functionality without having to trigger limit switches
-    BOp.whenPressed(new StarBurstOpen());
-    AOp.whenPressed(new StarBurstClosed());
+    //BOp.whenPressed(new StarBurstOpen());
+    //AOp.whenPressed(new StarBurstClosed());
     XOp.whenPressed(new StarBurstOff());
-    //YOp.whenPressed(new GoHatchFourBar());
+    AOp.whenPressed(new GoHatch());
+    BOp.whenPressed(new GoHome());
 
     //ADr.whenPressed(new GoHome());
-
+    ADr.whenPressed(new StarBurstOpen());
+    BDr.whenPressed(new StarBurstClosed());
     //Intake functions
-    LeftBumpOp.whileHeld(new EatCargo());
-    RightBumpOp.whileHeld(new SpitCargo());
+    //LeftBumpOp.whileHeld(new EatCargo());
+    //RightBumpOp.whileHeld(new SpitCargo());
     
   }
 

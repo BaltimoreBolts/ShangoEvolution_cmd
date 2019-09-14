@@ -21,16 +21,18 @@ public class StarBurstOpen extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    //StarBurst.getInstance().StarBurstOpenCounter.reset();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     // Put the code to open the Starburst
-
     //Starburst potentiometer = open value/
+    if (StarBurst.getInstance().CurrentState == StarBurst.StarBurstState.CLOSE) {
+      StarBurst.getInstance().setCurrentState(StarBurst.StarBurstState.OPEN);
       StarBurst.getInstance().open();
-
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

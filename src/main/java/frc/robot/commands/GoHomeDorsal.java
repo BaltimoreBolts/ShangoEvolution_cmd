@@ -14,18 +14,21 @@ public class GoHomeDorsal extends Command {
   public GoHomeDorsal() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(GPM.getInstance());
+    //requires(GPM.getInstance());
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    GPM.getInstance().MoveDown(0.1);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    GPM.getInstance().MoveDown(0.275);
+    if (!GPM.getInstance().isDown()) {
+      GPM.getInstance().MoveDown(0.275);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

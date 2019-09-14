@@ -34,20 +34,20 @@ public class GPM extends Subsystem {
   }
 
   //Define Motors for GPM/
-  private WPI_VictorSPX DorsalMotor1;
-  private WPI_TalonSRX DorsalMotor2;
-  private WPI_VictorSPX FourBarMotor1;
-  private WPI_VictorSPX FourBarMotor2;
+  public WPI_VictorSPX DorsalMotor1;
+  public WPI_TalonSRX DorsalMotor2;
+  public WPI_VictorSPX FourBarMotor1;
+  public WPI_VictorSPX FourBarMotor2;
 
   //Define Limit Switches for GPM/
-  private DigitalInput DorsalLimitUp, DorsalLimitDown;
-  private DigitalInput FourBarFwd, FourBarBack;
+  public DigitalInput DorsalLimitUp, DorsalLimitDown;
+  public DigitalInput FourBarFwd, FourBarBack;
 
   //Define Pot/
-  private AnalogPotentiometer DorsalPot, FourBarPot;
+  public AnalogPotentiometer DorsalPot, FourBarPot;
 
   //Define Line Sensor/
-  private DigitalInput LineSensorLeft, LineSensorCenter, LineSensorRight;
+  public DigitalInput LineSensorLeft, LineSensorCenter, LineSensorRight;
 
   public GPM(){
     //Initialize Motors for GPM/
@@ -109,16 +109,21 @@ public class GPM extends Subsystem {
     this.DorsalMotor2.set(ControlMode.PercentOutput, -val);
   }
   public boolean isUp(){
-    return this.DorsalLimitUp.get();
+    return !(this.DorsalLimitUp.get());
   }
   public boolean isDown(){
-    return this.DorsalLimitDown.get();
+    return !(this.DorsalLimitDown.get());
   }
   public boolean isFwd(){
-    return this.FourBarFwd.get();
-}
+    return !(this.FourBarFwd.get());
+  }
   public boolean isBack(){
     return this.FourBarBack.get();
+  }
+
+  public void DorsalOff() {
+    this.DorsalMotor1.set(ControlMode.PercentOutput, 0);
+    this.DorsalMotor2.set(ControlMode.PercentOutput, 0);
   }
 
   @Override

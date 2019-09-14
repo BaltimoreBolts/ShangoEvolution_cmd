@@ -30,7 +30,6 @@ public class Robot extends TimedRobot {
   public static StarBurst ShangoStarBurst;
   public static Intake ShangoIntake;
 
-
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 

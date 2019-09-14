@@ -25,7 +25,9 @@ public class GoHomeFourBar extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    GPM.getInstance().MoveBack(0.1);
+    if(!GPM.getInstance().isBack()) {
+      GPM.getInstance().MoveBack(0.28);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -37,7 +39,7 @@ public class GoHomeFourBar extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    GPM.getInstance().MoveBack(0.1);
+    GPM.getInstance().MoveBack(0.05);
   }
 
   // Called when another command which requires one or more of the same
