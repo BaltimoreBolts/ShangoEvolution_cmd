@@ -8,7 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.Robot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 // Import Talon SRX and Victor SPX
@@ -72,7 +72,7 @@ public class GPM extends Subsystem {
     LineSensorRight = new DigitalInput(9);
 
   // Initalize some smartdashboard stuff/
-  DorsalLimitUp.setName("limits","DorsalUp");
+  /*DorsalLimitUp.setName("limits","DorsalUp");
   DorsalLimitDown.setName("limits","DorsalDown");
   FourBarFwd.setName("limits","FourBarFwd");
   FourBarBack.setName("limits","FourBarDown");
@@ -80,7 +80,7 @@ public class GPM extends Subsystem {
   DorsalPot.setName("pot","dorsalpot");
   LineSensorLeft.setName("sensor","LeftLineSensor");
   LineSensorCenter.setName("sensor","CenterLineSensor");
-  LineSensorRight.setName("sensor","RightLineSensor");  
+  LineSensorRight.setName("sensor","RightLineSensor");  */
   
   }
 
@@ -90,6 +90,7 @@ public class GPM extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
 
   }
+  
   public void MoveFWD(double val){
    //Negative moves 4Bar fwd
     this.FourBarMotor1.set(ControlMode.PercentOutput, -val);
@@ -119,7 +120,24 @@ public class GPM extends Subsystem {
   public boolean isBack(){
     return this.FourBarBack.get();
   }
+
+  @Override
+  public void periodic() {
+    this.UpdateSmartDashboard();
   }
+
+  public void UpdateSmartDashboard() {
+    SmartDashboard.putData("Dorsal Lim Up:", DorsalLimitUp);
+    SmartDashboard.putData("Dorsal Lim Down:", DorsalLimitDown);
+    SmartDashboard.putData("Fourbar Lim Fwd:", FourBarFwd);
+    SmartDashboard.putData("Fourbar Lim Back:", FourBarBack);
+    SmartDashboard.putData("Fourbar Pot:", FourBarPot);
+    SmartDashboard.putData("Dorsal Pot:", DorsalPot);
+    SmartDashboard.putData("Left Line:", LineSensorLeft);
+    SmartDashboard.putData("Center Line:", LineSensorCenter);
+    SmartDashboard.putData("RightLine:", LineSensorRight);
+  }
+}
   
   /*Press a button (Y) = go hatch position
   Requires GPM

@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.DigitalInput;
 /**
@@ -52,5 +53,14 @@ public class Intake extends Subsystem {
   }
   public boolean hasCargo(){
     return this.CargoSensor.get();
+  }
+
+  @Override
+  public void periodic() {
+    this.UpdateSmartDashboard();
+  }
+
+  public void UpdateSmartDashboard() {
+    SmartDashboard.putData("Starburst Open LS:", CargoSensor);
   }
 }

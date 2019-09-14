@@ -43,9 +43,9 @@ public class StarBurst extends Subsystem {
     StarBurstLimitClose = new DigitalInput(6);
 
     //StarBurst SmartDashboard stuff/
-    StarBurstLimitOpen.setName("Starburst", "OpenLimitSwitch");
+    /*StarBurstLimitOpen.setName("Starburst", "OpenLimitSwitch");
     StarBurstLimitClose.setName("Starburst", "ClosedLimitSwitch"); 
-    StarBurstMotor.setName("SBMotor", "SBMotor");
+    StarBurstMotor.setName("SBMotor", "SBMotor");*/
   }
    @Override
   public void initDefaultCommand() {
@@ -55,10 +55,10 @@ public class StarBurst extends Subsystem {
     
   }
   public void open(){
-    this.StarBurstMotor.set(0.2);
+    this.StarBurstMotor.set(0.25);
   }
   public void close(){
-    this.StarBurstMotor.set(-0.2);
+    this.StarBurstMotor.set(-0.22);
   }
   public void MotorOff(){
     this.StarBurstMotor.set(0);

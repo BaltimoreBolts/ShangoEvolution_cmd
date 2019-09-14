@@ -25,7 +25,7 @@ public class GoHatchFourBar extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    GPM.getInstance().MoveBack(0.15);
+   GPM.getInstance().MoveBack(0.15);
 }
   
 

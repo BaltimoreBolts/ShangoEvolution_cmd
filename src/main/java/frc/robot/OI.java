@@ -102,8 +102,8 @@ public class OI {
     AOp = new JoystickButton(operator,1);
     BOp = new JoystickButton(operator,2);
     XOp = new JoystickButton(operator,3);
-    LeftLogoOp = new JoystickButton(operator,7);
-    RightLogoOp = new JoystickButton(operator, 8);
+    //LeftLogoOp = new JoystickButton(operator,7);
+    //RightLogoOp = new JoystickButton(operator, 8);
 
 
     LeftBumpOp = new JoystickButton(operator, 5);
@@ -114,9 +114,9 @@ public class OI {
     BOp.whenPressed(new StarBurstOpen());
     AOp.whenPressed(new StarBurstClosed());
     XOp.whenPressed(new StarBurstOff());
-    YOp.whenPressed(new GoHatch());
+    //YOp.whenPressed(new GoHatchFourBar());
 
-    ADr.whenPressed(new GoHome());
+    //ADr.whenPressed(new GoHome());
 
     //Intake functions
     LeftBumpOp.whileHeld(new EatCargo());

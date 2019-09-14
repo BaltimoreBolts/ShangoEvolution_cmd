@@ -40,12 +40,14 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    m_oi = new OI();
+    
     StarBurst.getInstance();
     GPM.getInstance();
     Intake.getInstance();
     // Should probably make drivetrain an instance as well for consistency
     ShangoDT = new DriveTrain();
+    
+    m_oi = new OI();
     m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
