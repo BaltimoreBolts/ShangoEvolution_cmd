@@ -7,6 +7,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.RobotState;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.OI;
@@ -27,7 +28,16 @@ public class ShangoDrive extends Command {
   
   @Override
   protected void execute() {
-    Robot.ShangoDT.DriveShango(OI.getInstance().getDriveX(), OI.getInstance().getDriveY()); 
+    double xDir = OI.getInstance().getDriveX();
+    double yDir = OI.getInstance().getDriveY();
+    double zDir = OI.getInstance().getDriveZ();
+    double Yaw = OI.getInstance().getYaw();
+
+    if (RobotState.isAutonomous()) { // When we're in Autonomous don't use robo-centric
+      Robot.ShangoDT.DriveShango(xDir, yDir, zDir, 0);
+    } else { // When we're in teleop we want to use robo-centric
+      Robot.ShangoDT.DriveShango(xDir, yDir, zDir, Yaw);
+    }   
   }
 
   // Make this return true when this Command no longer needs to run execute()

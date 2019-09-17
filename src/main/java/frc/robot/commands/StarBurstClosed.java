@@ -7,6 +7,8 @@
 
 package frc.robot.commands;
 
+import java.nio.channels.InterruptibleChannel;
+
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.StarBurst;
 
@@ -27,9 +29,12 @@ public class StarBurstClosed extends Command {
   @Override
   protected void execute() {
     // Code to close the Starburst 
+    // Need something better than this, it's wonky at best DRRM
     if (StarBurst.getInstance().CurrentState == StarBurst.StarBurstState.OPEN) {
       StarBurst.getInstance().setCurrentState(StarBurst.StarBurstState.CLOSE);
       StarBurst.getInstance().close();
+    } else {
+      // Turn the motor off? DRRM
     }
   }
 

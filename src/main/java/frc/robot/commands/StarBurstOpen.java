@@ -29,9 +29,12 @@ public class StarBurstOpen extends Command {
   protected void execute() {
     // Put the code to open the Starburst
     //Starburst potentiometer = open value/
+    // Need something better than this, it's wonky at best DRRM
     if (StarBurst.getInstance().CurrentState == StarBurst.StarBurstState.CLOSE) {
       StarBurst.getInstance().setCurrentState(StarBurst.StarBurstState.OPEN);
       StarBurst.getInstance().open();
+    } else {
+      // turn the motor off? DRRM
     }
   }
 

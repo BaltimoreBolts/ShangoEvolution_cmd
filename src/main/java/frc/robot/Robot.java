@@ -39,7 +39,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    
+
     StarBurst.getInstance();
     GPM.getInstance();
     Intake.getInstance();
@@ -93,7 +93,8 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     m_autonomousCommand = m_chooser.getSelected();
-
+    // Prefer to do it this way so we're accessing ShangoDT object gyro DRRM
+    Robot.ShangoDT.RobotGyro.reset(); 
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
      * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand

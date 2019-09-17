@@ -36,7 +36,7 @@ public class StarBurst extends Subsystem {
   public DigitalInput StarBurstLimitOpen, StarBurstLimitClose;
 
   public static enum StarBurstState {
-    OPEN, CLOSE
+    OPEN, CLOSE, MIDDLE
   };
 
   public StarBurstState CurrentState;
@@ -51,8 +51,10 @@ public class StarBurst extends Subsystem {
 
     if (StarBurstLimitOpen.get()) {
       CurrentState = StarBurstState.OPEN;
-    } else {
+    } else if (StarBurstLimitClose.get()) {
       CurrentState = StarBurstState.CLOSE;
+    } else {
+      CurrentState = StarBurstState.MIDDLE;
     }
 
     //StarBurst SmartDashboard stuff/
@@ -66,10 +68,10 @@ public class StarBurst extends Subsystem {
     // setDefaultCommand(new MySpecialCommand())
   }
   public void open(){
-    this.StarBurstMotor.set(0.3);
+    this.StarBurstMotor.set(0.2);
   }
   public void close(){
-    this.StarBurstMotor.set(-0.3);
+    this.StarBurstMotor.set(-0.2);
   }
   public void MotorOff(){
     this.StarBurstMotor.set(0);

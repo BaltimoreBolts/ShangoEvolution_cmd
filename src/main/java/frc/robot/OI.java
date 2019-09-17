@@ -64,7 +64,7 @@ public class OI {
   public Joystick driver, operator;
 
    //XBox Controller1 Buttons/
-   public Button ADr,BDr,XDr,YDr;
+   public Button TriggerDr,SideBtnDr,Joystick7Dr,Joystick8Dr;
    public Button AOp,BOp,XOp,YOp, LeftBumpOp, RightBumpOp, LeftLogoOp, RightLogoOp;
 
 
@@ -104,8 +104,8 @@ public class OI {
     XOp = new JoystickButton(operator,3);
     //LeftLogoOp = new JoystickButton(operator,7);
     //RightLogoOp = new JoystickButton(operator, 8);
-    ADr = new JoystickButton(driver, 1);
-    BDr = new JoystickButton(driver, 2);
+    TriggerDr = new JoystickButton(driver, 1);
+    SideBtnDr = new JoystickButton(driver, 2);
 
     //LeftBumpOp = new JoystickButton(operator, 5);
    // RightBumpOp= new JoystickButton(operator, 6);
@@ -119,8 +119,8 @@ public class OI {
     BOp.whenPressed(new GoHome());
 
     //ADr.whenPressed(new GoHome());
-    ADr.whenPressed(new StarBurstOpen());
-    BDr.whenPressed(new StarBurstClosed());
+    TriggerDr.whenPressed(new StarBurstClosed());
+    SideBtnDr.whenPressed(new StarBurstOpen());
     //Intake functions
     //LeftBumpOp.whileHeld(new EatCargo());
     //RightBumpOp.whileHeld(new SpitCargo());
@@ -129,14 +129,22 @@ public class OI {
 
   public double getDriveX() {
 
-    return driver.getX(Hand.kLeft);
+    return driver.getX();
   }
 
   public double getDriveY() {
 
-    return -driver.getY(Hand.kLeft);
-}
+    return -driver.getY();
+  }
+
+  public double getDriveZ() {
+    return driver.getZ();
+  }
   
+  public double getYaw() {
+    // Prefer to do it this way so we're accessing ShangoDT object gyro DRRM
+    return Robot.ShangoDT.RobotGyro.getAngleZ();
+  }
 
 
 }

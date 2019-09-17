@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import frc.robot.commands.*;
+import com.analog.adis16470.frc.ADIS16470_IMU;
 
 /**
  * Add your docs here.
@@ -27,6 +28,10 @@ public class DriveTrain extends Subsystem {
   private WPI_TalonSRX LeftBack;
   private WPI_TalonSRX RightBack;
 
+  //Define IMU for Robot Centric Drive/
+  // Currently getting a checksum error, my bet is it's from the gyro DRRM
+  public static final ADIS16470_IMU RobotGyro = new ADIS16470_IMU(); 
+
   //
   public DriveTrain() {
     //Initialize Drive Train Motors
@@ -38,8 +43,8 @@ public class DriveTrain extends Subsystem {
         
   }
 
-  public void DriveShango(double x, double y){
-    RobotDT.driveCartesian(x, y, 0, 0);
+  public void DriveShango(double x, double y, double z, double yaw){
+    RobotDT.driveCartesian(x, y, z, yaw);
   }
 
   @Override
