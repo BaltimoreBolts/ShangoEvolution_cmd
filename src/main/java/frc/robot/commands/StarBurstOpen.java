@@ -34,6 +34,7 @@ public class StarBurstOpen extends Command {
     //StarBurst.getInstance().StarBurstOpenCounter.reset();
     //this.setInterruptible(true);
     setTimeout(m_timeout);
+    StarBurst.getInstance().setCurrentState(StarBurst.StarBurstState.OPEN);
     StarBurst.getInstance().open();
   }
 
