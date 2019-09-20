@@ -9,6 +9,8 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import frc.robot.commands.*;
@@ -40,11 +42,19 @@ public class DriveTrain extends Subsystem {
     LeftBack = new WPI_TalonSRX(10);
     RightBack = new WPI_TalonSRX(12);
     RobotDT = new MecanumDrive(LeftFront, LeftBack, RightFront, RightBack);
+    RobotGyro.reset(); 
         
   }
 
+
+
   public void DriveShango(double x, double y, double z, double yaw){
     RobotDT.driveCartesian(x, y, z, yaw);
+  }
+
+  public void DriveShangoGyro(double x, double y, double z) {
+    RobotDT.driveCartesian(x, y, z, RobotGyro.getAngleZ());
+    
   }
 
   @Override
@@ -55,8 +65,16 @@ public class DriveTrain extends Subsystem {
 
   }
 
+  public void periodic() {
+    this.UpdateSmartDashboard();
+  }
+
   public MecanumDrive GetShangoDT() {
     return this.RobotDT;
+  }
+
+  public void UpdateSmartDashboard() {
+    SmartDashboard.putNumber("Yaw", RobotGyro.getRateZ());
   }
 
 }

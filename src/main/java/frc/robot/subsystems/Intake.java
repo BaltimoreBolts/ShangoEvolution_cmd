@@ -31,7 +31,7 @@ public class Intake extends Subsystem {
   public Intake(){
     CargoIntakeMotor = new WPI_TalonSRX(17); 
     //Initialize Cargo/Sensor Components for GPM/
-    CargoSensor = new DigitalInput(4); 
+    CargoSensor = new DigitalInput(5); 
 
     CargoSensor.setName("CargoSensor", "Sensor");
   }

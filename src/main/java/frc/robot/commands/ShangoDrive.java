@@ -31,12 +31,12 @@ public class ShangoDrive extends Command {
     double xDir = OI.getInstance().getDriveX();
     double yDir = OI.getInstance().getDriveY();
     double zDir = OI.getInstance().getDriveZ();
-    double Yaw = OI.getInstance().getYaw();
+    //double Yaw = OI.getInstance().getYaw();
 
     if (RobotState.isAutonomous()) { // When we're in Autonomous don't use robo-centric
       Robot.ShangoDT.DriveShango(xDir, yDir, zDir, 0);
     } else { // When we're in teleop we want to use robo-centric
-      Robot.ShangoDT.DriveShango(xDir, yDir, zDir, Yaw);
+      Robot.ShangoDT.DriveShangoGyro(xDir, yDir, zDir); 
     }   
   }
 

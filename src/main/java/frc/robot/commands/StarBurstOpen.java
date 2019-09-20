@@ -11,6 +11,17 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.StarBurst;
 
 public class StarBurstOpen extends Command {
+
+  public static StarBurstOpen INSTANCE = new StarBurstOpen();
+
+  public static StarBurstOpen getInstance() {
+    if (INSTANCE == null) {
+      INSTANCE = new StarBurstOpen();
+    }
+    return INSTANCE;
+
+  }
+
   public StarBurstOpen() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -22,6 +33,7 @@ public class StarBurstOpen extends Command {
   @Override
   protected void initialize() {
     //StarBurst.getInstance().StarBurstOpenCounter.reset();
+    this.setInterruptible(true);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -30,12 +42,13 @@ public class StarBurstOpen extends Command {
     // Put the code to open the Starburst
     //Starburst potentiometer = open value/
     // Need something better than this, it's wonky at best DRRM
-    if (StarBurst.getInstance().CurrentState == StarBurst.StarBurstState.CLOSE) {
+    StarBurst.getInstance().open();
+   /* if (StarBurst.getInstance().CurrentState == StarBurst.StarBurstState.CLOSE) {
       StarBurst.getInstance().setCurrentState(StarBurst.StarBurstState.OPEN);
       StarBurst.getInstance().open();
     } else {
       // turn the motor off? DRRM
-    }
+    }*/
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -56,5 +69,6 @@ public class StarBurstOpen extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    this.end();
   }
 }

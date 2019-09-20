@@ -9,11 +9,16 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.StarBurstClosed;
+import frc.robot.commands.StarBurstOpen;
 //Import Library for Star Burst Motor/
 import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.hal.InterruptJNI;
 import edu.wpi.first.wpilibj.Counter;
+import edu.wpi.first.wpilibj.Relay;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.InterruptHandlerFunction;
 /**
  * Add your docs here.
  */
@@ -33,7 +38,8 @@ public class StarBurst extends Subsystem {
   public VictorSP StarBurstMotor;
 
   //Define Limit Switches for GPM/
-  public DigitalInput StarBurstLimitOpen, StarBurstLimitClose;
+  public DigitalInput StarBurstLimitOpen, StarBurstLimitClosed;
+  public Relay CargoLight;
 
   public static enum StarBurstState {
     OPEN, CLOSE, MIDDLE
@@ -46,16 +52,20 @@ public class StarBurst extends Subsystem {
     StarBurstMotor = new VictorSP(0);
     
     //Initialize Limit Switches for GPM/
-    StarBurstLimitOpen = new DigitalInput(5);
-    StarBurstLimitClose = new DigitalInput(6);
+    StarBurstLimitOpen = new DigitalInput(4);
+    StarBurstLimitClosed = new DigitalInput(6);
+    CargoLight = new Relay(2, Relay.Direction.kForward);
 
-    if (StarBurstLimitOpen.get()) {
+
+    this.SetupInterrupts();
+
+    /*if (StarBurstLimitOpen.get()) {
       CurrentState = StarBurstState.OPEN;
     } else if (StarBurstLimitClose.get()) {
       CurrentState = StarBurstState.CLOSE;
     } else {
       CurrentState = StarBurstState.MIDDLE;
-    }
+    }*/
 
     //StarBurst SmartDashboard stuff/
     /*StarBurstLimitOpen.setName("Starburst", "OpenLimitSwitch");
@@ -67,6 +77,34 @@ public class StarBurst extends Subsystem {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand())
   }
+
+  public void SetupInterrupts() {
+
+    StarBurstLimitOpen.requestInterrupts(new InterruptHandlerFunction<Object>() {
+			
+			@Override // This is the function that will actually be called when the Open LS is hit
+			public void interruptFired(int interruptAssertedMask, Object param) {
+        StarBurstOpen.getInstance().cancel();
+        //StarBurst.StarBurstOpenCMD.Cancel();
+
+      }});
+
+      StarBurstLimitClosed.requestInterrupts(new InterruptHandlerFunction<Object>() {
+			
+        @Override // This is the function that will actually be called when the Open LS is hit
+        public void interruptFired(int interruptAssertedMask, Object param) {
+          StarBurstClosed.getInstance().cancel();
+          //StarBurst.StarBurstOpenCMD.Cancel();
+  
+        }});
+      
+		
+		StarBurstLimitOpen.setUpSourceEdge(true, false); // Sets up for rising edge, might need to flip it for falling edge I forget how the LS work
+		StarBurstLimitClosed.setUpSourceEdge(true, false);
+		
+		StarBurstLimitOpen.enableInterrupts();
+		StarBurstLimitClosed.enableInterrupts();
+	}
   public void open(){
     this.StarBurstMotor.set(0.2);
   }
@@ -80,7 +118,8 @@ public class StarBurst extends Subsystem {
     return StarBurstLimitOpen.get();
   }
   public boolean isClosed(){
-    return StarBurstLimitClose.get();
+    //this.CargoLight.set()
+    return StarBurstLimitClosed.get();
   }
 
   public void setCurrentState(StarBurstState newState) {
@@ -94,8 +133,8 @@ public class StarBurst extends Subsystem {
 
   public void UpdateSmartDashboard() {
     SmartDashboard.putData("Starburst Open LS:", StarBurstLimitOpen);
-    SmartDashboard.putData("Starburst Close LS:", StarBurstLimitClose);
-    SmartDashboard.putString("Current StarBurst State: ", CurrentState.toString());
+    SmartDashboard.putData("Starburst Close LS:", StarBurstLimitClosed);
+   // SmartDashboard.putString("Current StarBurst State: ", CurrentState.toString());
   }
 
 }
