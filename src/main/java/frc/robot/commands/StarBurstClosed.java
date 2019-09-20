@@ -14,7 +14,8 @@ import frc.robot.subsystems.StarBurst;
 
 public class StarBurstClosed extends Command {
 
-  public static StarBurstClosed INSTANCE = new StarBurstClosed();
+  private double m_timeout;
+  /*public static StarBurstClosed INSTANCE = new StarBurstClosed();
 
   public static StarBurstClosed getInstance() {
     if (INSTANCE == null) {
@@ -22,18 +23,22 @@ public class StarBurstClosed extends Command {
     }
     return INSTANCE;
 
-  }
-  public StarBurstClosed() {
+  }*/
+  public StarBurstClosed(double timeout) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    m_timeout = timeout;
     requires(StarBurst.getInstance());
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    this.setInterruptible(true);
+    //this.setInterruptible(true);
     //StarBurst.getInstance().StarBurstCloseCounter.reset();
+    setTimeout(m_timeout);
+    StarBurst.getInstance().setCurrentState(StarBurst.StarBurstState.CLOSE);
+    StarBurst.getInstance().close();
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -47,13 +52,14 @@ public class StarBurstClosed extends Command {
     } else {
       // Turn the motor off? DRRM
     }*/
-    StarBurst.getInstance().close();
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return StarBurst.getInstance().isClosed();
+    //return StarBurst.getInstance().isClosed();
+    return isTimedOut();
   }
   
   // Called once after isFinished returns true

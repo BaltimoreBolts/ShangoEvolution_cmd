@@ -132,9 +132,12 @@ public class GPM extends Subsystem {
   }
 
   public void UpdateSmartDashboard() {
-    SmartDashboard.putData("Dorsal Lim Up:", DorsalLimitUp);
+    /*SmartDashboard.putData("Dorsal Lim Up:", DorsalLimitUp);
     SmartDashboard.putData("Dorsal Lim Down:", DorsalLimitDown);
-    SmartDashboard.putData("Fourbar Lim Fwd:", FourBarFwd);
+    SmartDashboard.putData("Fourbar Lim Fwd:", FourBarFwd);*/
+    SmartDashboard.putBoolean("Dorsal Lim Up:", GPM.getInstance().isUp());
+    SmartDashboard.putBoolean("Dorsal Lim Down:", GPM.getInstance().isDown());
+    SmartDashboard.putBoolean("Fourbar Lim Fwd:", GPM.getInstance().isFwd());
     SmartDashboard.putData("Fourbar Lim Back:", FourBarBack);
     SmartDashboard.putData("Fourbar Pot:", FourBarPot);
     SmartDashboard.putData("Dorsal Pot:", DorsalPot);

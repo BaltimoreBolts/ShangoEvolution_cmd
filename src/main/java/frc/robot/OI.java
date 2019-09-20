@@ -119,8 +119,9 @@ public class OI {
     BOp.whenPressed(new GoHome());
 
     //ADr.whenPressed(new GoHome());
-    TriggerDr.whenPressed(new StarBurstClosed());
-    SideBtnDr.whenPressed(new StarBurstOpen());
+    // Starburst open/close run for 0.2 seconds
+    TriggerDr.whenPressed(new StarBurstClosed(0.2));
+    SideBtnDr.whenPressed(new StarBurstOpen(0.2));
     //Intake functions
     //LeftBumpOp.whileHeld(new EatCargo());
     //RightBumpOp.whileHeld(new SpitCargo());

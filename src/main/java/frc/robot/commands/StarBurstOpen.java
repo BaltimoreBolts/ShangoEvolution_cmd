@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.StarBurst;
 
 public class StarBurstOpen extends Command {
-
-  public static StarBurstOpen INSTANCE = new StarBurstOpen();
+  private double m_timeout;
+  /*public static StarBurstOpen INSTANCE = new StarBurstOpen();
 
   public static StarBurstOpen getInstance() {
     if (INSTANCE == null) {
@@ -20,12 +20,11 @@ public class StarBurstOpen extends Command {
     }
     return INSTANCE;
 
-  }
+  }*/
 
-  public StarBurstOpen() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    //requires(Robot.ShangoStarBurst);
+  /* Call command with timeout value in seconds*/
+  public StarBurstOpen(double timeout) {
+    m_timeout = timeout;
     requires(StarBurst.getInstance());
   }
 
@@ -33,7 +32,9 @@ public class StarBurstOpen extends Command {
   @Override
   protected void initialize() {
     //StarBurst.getInstance().StarBurstOpenCounter.reset();
-    this.setInterruptible(true);
+    //this.setInterruptible(true);
+    setTimeout(m_timeout);
+    StarBurst.getInstance().open();
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -42,7 +43,7 @@ public class StarBurstOpen extends Command {
     // Put the code to open the Starburst
     //Starburst potentiometer = open value/
     // Need something better than this, it's wonky at best DRRM
-    StarBurst.getInstance().open();
+    
    /* if (StarBurst.getInstance().CurrentState == StarBurst.StarBurstState.CLOSE) {
       StarBurst.getInstance().setCurrentState(StarBurst.StarBurstState.OPEN);
       StarBurst.getInstance().open();
@@ -54,7 +55,8 @@ public class StarBurstOpen extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return StarBurst.getInstance().isOpen();
+  //return StarBurst.getInstance().isOpen();
+    return isTimedOut();
   }
 
   // Called once after isFinished returns true
