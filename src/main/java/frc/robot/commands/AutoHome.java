@@ -36,17 +36,18 @@ public class AutoHome extends Command {
 
   // Called once after isFinished returns true
 
-  //I think we want this so when it gets interupted the motors turn off
+  //Don't turn motors off because we always need some oomph to keep dorsal 
+  // and fourback back if we are driving around
   @Override
   protected void end() {
-    GPM.getInstance().DorsalOff();
-    GPM.getInstance().FourBarOff();
+    //GPM.getInstance().DorsalOff();
+    //GPM.getInstance().FourBarOff();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    this.end();
+    //sthis.end();
   }
 }

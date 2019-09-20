@@ -49,7 +49,7 @@ public class StarBurst extends Subsystem {
   public StarBurstState CurrentState;
   
   public StarBurst(){
-      //Initialize Motors for GPM/
+    //Initialize Motors for GPM/
     StarBurstMotor = new VictorSP(0);
     
     //Initialize Limit Switches for GPM/
@@ -57,21 +57,16 @@ public class StarBurst extends Subsystem {
     StarBurstLimitClosed = new DigitalInput(6);
     CargoLight = new Relay(2, Relay.Direction.kForward);
 
+    //this.SetupInterrupts();
 
-    this.SetupInterrupts();
-
-    /*if (StarBurstLimitOpen.get()) {
+    if (StarBurstLimitOpen.get()) {
       CurrentState = StarBurstState.OPEN;
-    } else if (StarBurstLimitClose.get()) {
+    } else if (StarBurstLimitClosed.get()) {
       CurrentState = StarBurstState.CLOSE;
     } else {
       CurrentState = StarBurstState.MIDDLE;
-    }*/
+    }
 
-    //StarBurst SmartDashboard stuff/
-    /*StarBurstLimitOpen.setName("Starburst", "OpenLimitSwitch");
-    StarBurstLimitClose.setName("Starburst", "ClosedLimitSwitch"); 
-    StarBurstMotor.setName("SBMotor", "SBMotor");*/
   }
    @Override
   public void initDefaultCommand() {
@@ -79,7 +74,7 @@ public class StarBurst extends Subsystem {
     // setDefaultCommand(new MySpecialCommand())
   }
 
-  public void SetupInterrupts() {
+  /*public void SetupInterrupts() {
 
     StarBurstLimitOpen.requestInterrupts(new InterruptHandlerFunction<Object>() {
 			
@@ -105,7 +100,8 @@ public class StarBurst extends Subsystem {
 		
 		StarBurstLimitOpen.enableInterrupts();
 		StarBurstLimitClosed.enableInterrupts();
-	}
+  }*/
+  
   public void open(){
     this.StarBurstMotor.set(0.2);
   }
@@ -143,7 +139,7 @@ public class StarBurst extends Subsystem {
   public void UpdateSmartDashboard() {
     SmartDashboard.putData("Starburst Open LS:", StarBurstLimitOpen);
     SmartDashboard.putData("Starburst Close LS:", StarBurstLimitClosed);
-   // SmartDashboard.putString("Current StarBurst State: ", CurrentState.toString());
+    SmartDashboard.putString("Current StarBurst State: ", CurrentState.toString());
   }
 
 }

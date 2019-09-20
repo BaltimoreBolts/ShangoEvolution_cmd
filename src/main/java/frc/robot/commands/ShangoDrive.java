@@ -35,8 +35,8 @@ public class ShangoDrive extends Command {
 
     if (RobotState.isAutonomous()) { // When we're in Autonomous don't use robo-centric
       Robot.ShangoDT.DriveShango(xDir, yDir, zDir, 0);
-    } else { // When we're in teleop we want to use robo-centric
-      Robot.ShangoDT.DriveShangoGyro(xDir, yDir, zDir); 
+    } else { // When we're in teleop we want to use robo-centric. Not yet implemented
+      Robot.ShangoDT.DriveShango(xDir, yDir, zDir, 0); 
     }   
   }
 
