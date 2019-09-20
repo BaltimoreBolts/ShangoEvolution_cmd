@@ -141,10 +141,10 @@ public class OI {
     return driver.getZ();
   }
   
-  public double getYaw() {
+  /*public double getYaw() {
     // Prefer to do it this way so we're accessing ShangoDT object gyro DRRM
     return Robot.ShangoDT.RobotGyro.getAngleZ();
-  }
+  }*/
 
 
 }

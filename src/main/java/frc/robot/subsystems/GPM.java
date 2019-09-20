@@ -71,17 +71,12 @@ public class GPM extends Subsystem {
     LineSensorCenter = new DigitalInput(8);
     LineSensorRight = new DigitalInput(9);
 
-  // Initalize some smartdashboard stuff/
-  /*DorsalLimitUp.setName("limits","DorsalUp");
-  DorsalLimitDown.setName("limits","DorsalDown");
-  FourBarFwd.setName("limits","FourBarFwd");
-  FourBarBack.setName("limits","FourBarDown");
-  FourBarPot.setName("pot","4barpot");
-  DorsalPot.setName("pot","dorsalpot");
-  LineSensorLeft.setName("sensor","LeftLineSensor");
-  LineSensorCenter.setName("sensor","CenterLineSensor");
-  LineSensorRight.setName("sensor","RightLineSensor");  */
-  
+    // Make sure everything is default config settings
+    DorsalMotor1.configFactoryDefault();
+    DorsalMotor2.configFactoryDefault();
+    FourBarMotor1.configFactoryDefault();
+    FourBarMotor2.configFactoryDefault();
+
   }
 
   @Override
@@ -124,6 +119,11 @@ public class GPM extends Subsystem {
   public void DorsalOff() {
     this.DorsalMotor1.set(ControlMode.PercentOutput, 0);
     this.DorsalMotor2.set(ControlMode.PercentOutput, 0);
+  }
+
+  public void FourBarOff() {
+    this.FourBarMotor1.set(ControlMode.PercentOutput, 0);
+    this.FourBarMotor2.set(ControlMode.PercentOutput, 0);
   }
 
   @Override

@@ -13,6 +13,7 @@ import frc.robot.commands.StarBurstClosed;
 import frc.robot.commands.StarBurstOpen;
 //Import Library for Star Burst Motor/
 import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.Relay.Value;
 import edu.wpi.first.hal.InterruptJNI;
 import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.Relay;
@@ -114,11 +115,19 @@ public class StarBurst extends Subsystem {
   public void MotorOff(){
     this.StarBurstMotor.set(0);
   }
+
+  public void lightOn() {
+    CargoLight.set(Value.kOn);
+  }
+
+  public void lightOff() {
+    CargoLight.set(Value.kOff);
+  }
+
   public boolean isOpen(){
     return StarBurstLimitOpen.get();
   }
   public boolean isClosed(){
-    //this.CargoLight.set()
     return StarBurstLimitClosed.get();
   }
 

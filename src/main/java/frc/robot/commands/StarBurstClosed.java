@@ -60,6 +60,7 @@ public class StarBurstClosed extends Command {
   @Override
   protected void end() {
     StarBurst.getInstance().MotorOff();
+    StarBurst.getInstance().lightOff();
   }
 
   // Called when another command which requires one or more of the same

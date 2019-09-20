@@ -8,60 +8,39 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.subsystems.StarBurst;
+import frc.robot.subsystems.GPM;
 
-public class StarBurstOpen extends Command {
-
-  public static StarBurstOpen INSTANCE = new StarBurstOpen();
-
-  public static StarBurstOpen getInstance() {
-    if (INSTANCE == null) {
-      INSTANCE = new StarBurstOpen();
-    }
-    return INSTANCE;
-
-  }
-
-  public StarBurstOpen() {
+public class AutoHome extends Command {
+  public AutoHome() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    //requires(Robot.ShangoStarBurst);
-    requires(StarBurst.getInstance());
+    requires(GPM.getInstance());
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    //StarBurst.getInstance().StarBurstOpenCounter.reset();
-    this.setInterruptible(true);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    // Put the code to open the Starburst
-    //Starburst potentiometer = open value/
-    // Need something better than this, it's wonky at best DRRM
-    StarBurst.getInstance().open();
-   /* if (StarBurst.getInstance().CurrentState == StarBurst.StarBurstState.CLOSE) {
-      StarBurst.getInstance().setCurrentState(StarBurst.StarBurstState.OPEN);
-      StarBurst.getInstance().open();
-    } else {
-      // turn the motor off? DRRM
-    }*/
+    GPM.getInstance().MoveDown(0.1);
+    GPM.getInstance().MoveBack(0.1);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return StarBurst.getInstance().isOpen();
+    return false;
   }
 
   // Called once after isFinished returns true
+
+  //I think we want this so when it gets interupted the motors turn off
   @Override
   protected void end() {
-    StarBurst.getInstance().MotorOff();
-    StarBurst.getInstance().lightOn();
+    GPM.getInstance().DorsalOff();
+    GPM.getInstance().FourBarOff();
   }
 
   // Called when another command which requires one or more of the same

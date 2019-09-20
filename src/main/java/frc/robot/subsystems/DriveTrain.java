@@ -9,15 +9,14 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import frc.robot.commands.*;
-import com.analog.adis16470.frc.ADIS16470_IMU;
+//import com.analog.adis16470.frc.ADIS16470_IMU;
 
 /**
- * Add your docs here.
+ * Need to make drivetrain a static instance. For after BoB
  */
 public class DriveTrain extends Subsystem {
   // Put methods for controlling this subsystem
@@ -32,7 +31,7 @@ public class DriveTrain extends Subsystem {
 
   //Define IMU for Robot Centric Drive/
   // Currently getting a checksum error, my bet is it's from the gyro DRRM
-  public static final ADIS16470_IMU RobotGyro = new ADIS16470_IMU(); 
+  //public static final ADIS16470_IMU RobotGyro = new ADIS16470_IMU(); 
 
   //
   public DriveTrain() {
@@ -42,20 +41,17 @@ public class DriveTrain extends Subsystem {
     LeftBack = new WPI_TalonSRX(10);
     RightBack = new WPI_TalonSRX(12);
     RobotDT = new MecanumDrive(LeftFront, LeftBack, RightFront, RightBack);
-    RobotGyro.reset(); 
+    //RobotGyro.reset(); 
         
   }
-
-
 
   public void DriveShango(double x, double y, double z, double yaw){
     RobotDT.driveCartesian(x, y, z, yaw);
   }
 
-  public void DriveShangoGyro(double x, double y, double z) {
+  /*public void DriveShangoGyro(double x, double y, double z) {
     RobotDT.driveCartesian(x, y, z, RobotGyro.getAngleZ());
-    
-  }
+  }*/
 
   @Override
   public void initDefaultCommand() {
@@ -66,15 +62,15 @@ public class DriveTrain extends Subsystem {
   }
 
   public void periodic() {
-    this.UpdateSmartDashboard();
+    //this.UpdateSmartDashboard();
   }
 
   public MecanumDrive GetShangoDT() {
     return this.RobotDT;
   }
 
-  public void UpdateSmartDashboard() {
-    SmartDashboard.putNumber("Yaw", RobotGyro.getRateZ());
-  }
+  /*public void UpdateSmartDashboard() {
+    SmartDashboard.putNumber("Yaw", RobotGyro.getAngleZ());
+  }*/
 
 }
