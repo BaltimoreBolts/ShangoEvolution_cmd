@@ -39,6 +39,7 @@ public class StarBurstClosed extends Command {
     setTimeout(m_timeout);
     StarBurst.getInstance().setCurrentState(StarBurst.StarBurstState.CLOSE);
     StarBurst.getInstance().close();
+    StarBurst.getInstance().lightOff();
   }
 
   // Called repeatedly when this Command is scheduled to run

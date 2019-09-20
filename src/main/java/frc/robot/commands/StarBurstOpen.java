@@ -36,6 +36,7 @@ public class StarBurstOpen extends Command {
     setTimeout(m_timeout);
     StarBurst.getInstance().setCurrentState(StarBurst.StarBurstState.OPEN);
     StarBurst.getInstance().open();
+    StarBurst.getInstance().lightOn();
   }
 
   // Called repeatedly when this Command is scheduled to run

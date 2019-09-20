@@ -24,7 +24,7 @@ public class AutoHome extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    GPM.getInstance().MoveDown(0.1);
+    GPM.getInstance().MoveDown(0.25);
     GPM.getInstance().MoveBack(0.1);
   }
 
