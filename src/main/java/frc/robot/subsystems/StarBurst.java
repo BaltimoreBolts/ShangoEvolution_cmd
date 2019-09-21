@@ -103,10 +103,10 @@ public class StarBurst extends Subsystem {
   }*/
   
   public void open(){
-    this.StarBurstMotor.set(0.2);
+    this.StarBurstMotor.set(0.3);
   }
   public void close(){
-    this.StarBurstMotor.set(-0.2);
+    this.StarBurstMotor.set(-0.3);
   }
   public void MotorOff(){
     this.StarBurstMotor.set(0);
