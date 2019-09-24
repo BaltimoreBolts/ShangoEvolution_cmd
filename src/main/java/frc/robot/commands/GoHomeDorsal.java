@@ -14,7 +14,7 @@ public class GoHomeDorsal extends Command {
   public GoHomeDorsal() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    //requires(GPM.getInstance());
+    requires(GPM.getInstance());
   }
 
   // Called just before this Command runs the first time
@@ -40,7 +40,7 @@ public class GoHomeDorsal extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    GPM.getInstance().MoveDown(0.1);
+    GPM.getInstance().MoveDown(0.2);
   }
 
   // Called when another command which requires one or more of the same

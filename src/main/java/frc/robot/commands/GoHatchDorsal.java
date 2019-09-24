@@ -40,7 +40,7 @@ public class GoHatchDorsal extends Command {
 
   @Override
   protected void end() {
-    GPM.getInstance().MoveDown(0.1);
+    GPM.getInstance().MoveDown(0.2);
   }
 
   // Called when another command which requires one or more of the same
