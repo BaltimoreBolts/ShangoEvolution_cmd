@@ -102,6 +102,7 @@ public class OI {
     AOp = new JoystickButton(operator,1);
     BOp = new JoystickButton(operator,2);
     XOp = new JoystickButton(operator,3);
+    YOp = new JoystickButton(operator,4);
     //LeftLogoOp = new JoystickButton(operator,7);
     //RightLogoOp = new JoystickButton(operator, 8);
     TriggerDr = new JoystickButton(driver, 1);
@@ -114,7 +115,7 @@ public class OI {
     //Added starburst off to test button functionality without having to trigger limit switches
     //BOp.whenPressed(new StarBurstOpen());
     //AOp.whenPressed(new StarBurstClosed());
-    XOp.whenPressed(new StarBurstOff());
+    //XOp.whenPressed(new StarBurstOff());
     AOp.whenPressed(new GoHatch());
     BOp.whenPressed(new GoHome());
 
@@ -123,8 +124,8 @@ public class OI {
     TriggerDr.whenPressed(new StarBurstClosed(1));
     SideBtnDr.whenPressed(new StarBurstOpen(1));
     //Intake functions
-    //LeftBumpOp.whileHeld(new EatCargo());
-    //RightBumpOp.whileHeld(new SpitCargo());
+    XOp.whenPressed(new EatCargo(1));
+    YOp.whenPressed(new SpitCargo(2));
     
   }
 

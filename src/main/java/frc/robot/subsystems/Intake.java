@@ -45,8 +45,9 @@ public class Intake extends Subsystem {
   public void intake(){
     this.CargoIntakeMotor.set(0.5);
   }
+  // Outtake needs to be negative
   public void outtake(){
-    this.CargoIntakeMotor.set(-0.5);
+    this.CargoIntakeMotor.set(-1);
   }
   public void MotorOff(){
     this.CargoIntakeMotor.set(0);

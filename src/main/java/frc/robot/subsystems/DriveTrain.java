@@ -9,11 +9,11 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
-//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import frc.robot.commands.*;
-//import com.analog.adis16470.frc.ADIS16470_IMU;
+import com.analog.adis16470.frc.ADIS16470_IMU;
 
 /**
  * Need to make drivetrain a static instance. For after BoB
@@ -70,7 +70,7 @@ public class DriveTrain extends Subsystem {
   }
 
   /*public void UpdateSmartDashboard() {
-    SmartDashboard.putNumber("Yaw", RobotGyro.getAngleZ());
+    SmartDashboard.putNumber("Yaw", RobotGyro.getAngle());
   }*/
 
 }

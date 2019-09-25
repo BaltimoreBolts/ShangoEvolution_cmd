@@ -11,27 +11,34 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.Intake;
 
 public class EatCargo extends Command {
-  public EatCargo() {
+
+  private double m_timeout;
+
+  public EatCargo(double timeout) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    m_timeout = timeout;
     requires(Intake.getInstance());
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    setTimeout(m_timeout);
+    Intake.getInstance().intake();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Intake.getInstance().intake();
+
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return isTimedOut();
     // Should put this back after testing. Stop intake when we have cargo? 
     //return Intake.getInstance().hasCargo();
   }

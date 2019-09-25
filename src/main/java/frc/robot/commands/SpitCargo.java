@@ -11,27 +11,34 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.Intake;
 
 public class SpitCargo extends Command {
-  public SpitCargo() {
+
+  private double m_timeout;
+
+  public SpitCargo(double timeout) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    m_timeout = timeout;
     requires(Intake.getInstance());
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    setTimeout(m_timeout);
+    Intake.getInstance().outtake();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Intake.getInstance().outtake();
+    
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return isTimedOut();
   }
 
   // Called once after isFinished returns true
