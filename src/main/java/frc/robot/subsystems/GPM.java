@@ -104,16 +104,23 @@ public class GPM extends Subsystem {
     this.DorsalMotor2.set(ControlMode.PercentOutput, -val);
   }
   public boolean isUp(){
+    // Dorsal up limit is mechanical so invert get() value
     return !(this.DorsalLimitUp.get());
   }
   public boolean isDown(){
-    return !(this.DorsalLimitDown.get());
+    //If dorsal limit switch is down or pot is less than down pot value
+    //Dorsal down limit is mechanical so invert get() value
+    return (!(this.DorsalLimitDown.get()) || (this.DorsalPot.get() <= 0.111));
   }
   public boolean isFwd(){
-    return !(this.FourBarFwd.get());
+    // If fourbar fwd limit is set or pot is less than fwd pot value
+    // Fourbar fwd is mechanical so invert get() value
+    return ( !(this.FourBarFwd.get()) || (this.FourBarPot.get() <= 0.48)) ;
+    
   }
   public boolean isBack(){
-    return this.FourBarBack.get();
+    // If fourbar back limit is set or fourbarpot value is greater than back pot value
+    return (this.FourBarBack.get() || (this.FourBarPot.get() >= 1.38));
   }
 
   public void DorsalOff() {
