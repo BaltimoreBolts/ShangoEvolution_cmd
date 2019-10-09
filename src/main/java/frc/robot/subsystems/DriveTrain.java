@@ -31,7 +31,7 @@ public class DriveTrain extends Subsystem {
 
   //Define IMU for Robot Centric Drive/
   // Currently getting a checksum error, my bet is it's from the gyro DRRM
-  //public static final ADIS16470_IMU RobotGyro = new ADIS16470_IMU(); 
+  public static final ADIS16470_IMU RobotGyro = new ADIS16470_IMU(); 
 
   //
   public DriveTrain() {
@@ -41,7 +41,7 @@ public class DriveTrain extends Subsystem {
     LeftBack = new WPI_TalonSRX(10);
     RightBack = new WPI_TalonSRX(12);
     RobotDT = new MecanumDrive(LeftFront, LeftBack, RightFront, RightBack);
-    //RobotGyro.reset(); 
+     
         
   }
 
@@ -49,9 +49,9 @@ public class DriveTrain extends Subsystem {
     RobotDT.driveCartesian(x, y, z, yaw);
   }
 
-  /*public void DriveShangoGyro(double x, double y, double z) {
+  public void DriveShangoGyro(double x, double y, double z) {
     RobotDT.driveCartesian(x, y, z, RobotGyro.getAngleZ());
-  }*/
+  }
 
   @Override
   public void initDefaultCommand() {
@@ -62,15 +62,20 @@ public class DriveTrain extends Subsystem {
   }
 
   public void periodic() {
-    //this.UpdateSmartDashboard();
+    this.UpdateSmartDashboard();
   }
 
   public MecanumDrive GetShangoDT() {
     return this.RobotDT;
   }
 
-  /*public void UpdateSmartDashboard() {
+  public void resetGyro() {
+    RobotGyro.reset();
+  }
+
+  public void UpdateSmartDashboard() {
     SmartDashboard.putNumber("Yaw", RobotGyro.getAngle());
-  }*/
+    //SmartDashboard.putNumber("z", RobotGyro.getAngleZ());
+  }
 
 }

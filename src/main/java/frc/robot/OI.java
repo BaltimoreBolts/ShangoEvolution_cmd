@@ -64,7 +64,7 @@ public class OI {
   public Joystick driver, operator;
 
    //XBox Controller1 Buttons/
-   public Button TriggerDr,SideBtnDr,Joystick7Dr,Joystick8Dr;
+   public Button TriggerDr,SideBtnDr,Joystick7Dr,Joystick8Dr, Joystick10Dr, Joystick11Dr, Joystick12Dr;
    public Button AOp,BOp,XOp,YOp, LeftBumpOp, RightBumpOp, LeftLogoOp, RightLogoOp;
 
 
@@ -107,6 +107,12 @@ public class OI {
     //RightLogoOp = new JoystickButton(operator, 8);
     TriggerDr = new JoystickButton(driver, 1);
     SideBtnDr = new JoystickButton(driver, 2);
+    Joystick7Dr = new JoystickButton(driver, 7);
+    Joystick8Dr = new JoystickButton(driver, 8);
+    Joystick10Dr = new JoystickButton(driver, 10);
+    Joystick11Dr = new JoystickButton(driver, 11);
+    Joystick12Dr = new JoystickButton(driver, 12);
+
 
     //LeftBumpOp = new JoystickButton(operator, 5);
    // RightBumpOp= new JoystickButton(operator, 6);
@@ -126,11 +132,18 @@ public class OI {
     //Intake functions
     XOp.whenPressed(new EatCargo(1));
     YOp.whenPressed(new SpitCargo(2));
+
+    //Gyro reset
+    //Joystick7Dr.whenPressed(Robot.ShangoDT.resetGyro());
     
   }
 
   public double getDriveX() {
-
+    // For some reason getButton() doesn't like when you give it a button ... so Raw button 
+    // is just giving it the value of Joystick7Dr (DRRM)
+    if (this.driver.getRawButtonPressed(7)) {
+      //Robot.ShangoDT.resetGyro();
+    }
     return driver.getX();
   }
 
@@ -142,6 +155,18 @@ public class OI {
   public double getDriveZ() {
     return driver.getZ();
   }
+
+  public boolean LockX() {
+    return this.Joystick10Dr.get();
+  }
+  public boolean LockY() {
+    return this.Joystick11Dr.get();
+  }
+  public boolean LockZ() {
+    return this.Joystick12Dr.get();
+  }
+  
+
   
   /*public double getYaw() {
     // Prefer to do it this way so we're accessing ShangoDT object gyro DRRM

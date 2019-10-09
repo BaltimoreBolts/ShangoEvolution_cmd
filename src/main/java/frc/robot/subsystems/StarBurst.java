@@ -137,9 +137,9 @@ public class StarBurst extends Subsystem {
   }
 
   public void UpdateSmartDashboard() {
-    SmartDashboard.putData("Starburst Open LS:", StarBurstLimitOpen);
-    SmartDashboard.putData("Starburst Close LS:", StarBurstLimitClosed);
-    SmartDashboard.putString("Current StarBurst State: ", CurrentState.toString());
+    SmartDashboard.putData("Starburst Open LS", StarBurstLimitOpen);
+    SmartDashboard.putData("Starburst Close LS", StarBurstLimitClosed);
+    SmartDashboard.putString("Current StarBurst State", CurrentState.toString());
   }
 
 }

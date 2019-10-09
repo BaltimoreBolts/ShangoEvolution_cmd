@@ -62,6 +62,6 @@ public class Intake extends Subsystem {
   }
 
   public void UpdateSmartDashboard() {
-    SmartDashboard.putData("Starburst Open LS:", CargoSensor);
+    SmartDashboard.putData("Cargo Sensor", CargoSensor);
   }
 }

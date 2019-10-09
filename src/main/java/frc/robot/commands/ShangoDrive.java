@@ -28,15 +28,33 @@ public class ShangoDrive extends Command {
   
   @Override
   protected void execute() {
-    double xDir = OI.getInstance().getDriveX();
-    double yDir = OI.getInstance().getDriveY();
-    double zDir = OI.getInstance().getDriveZ();
+    double xDir, yDir, zDir;
+    if (OI.getInstance().LockX()) {
+      xDir = OI.getInstance().getDriveX();
+      yDir = 0;
+      zDir = 0;
+    } else if (OI.getInstance().LockY()){
+      xDir = 0;
+      yDir = OI.getInstance().getDriveY();
+      zDir = 0;
+    } else if (OI.getInstance().LockZ()){
+      xDir = 0;
+      yDir = 0;  
+      zDir = OI.getInstance().getDriveZ();  
+    } else {
+      xDir = OI.getInstance().getDriveX();
+      yDir = OI.getInstance().getDriveY();
+      zDir = OI.getInstance().getDriveZ();
+    }
+
     //double Yaw = OI.getInstance().getYaw();
 
     if (RobotState.isAutonomous()) { // When we're in Autonomous don't use robo-centric
-      Robot.ShangoDT.DriveShango(xDir, yDir, zDir, 0);
+      //Robot.ShangoDT.DriveShango(xDir, yDir, zDir, 0);
+      Robot.ShangoDT.DriveShangoGyro(xDir, yDir, zDir);
     } else { // When we're in teleop we want to use robo-centric. Not yet implemented
-      Robot.ShangoDT.DriveShango(xDir, yDir, zDir, 0); 
+      //Robot.ShangoDT.DriveShango(xDir, yDir, zDir, 0); 
+      Robot.ShangoDT.DriveShangoGyro(xDir, yDir, zDir);
     }   
   }
 
