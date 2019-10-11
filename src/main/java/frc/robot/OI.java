@@ -64,7 +64,7 @@ public class OI {
   public Joystick driver, operator;
 
    //XBox Controller1 Buttons/
-   public Button TriggerDr,SideBtnDr,Joystick7Dr,Joystick8Dr, Joystick10Dr, Joystick11Dr, Joystick12Dr;
+   public Button TriggerDr,SideBtnDr,Joystick7Dr,Joystick8Dr, Joystick9Dr, Joystick10Dr, Joystick11Dr, Joystick12Dr;
    public Button AOp,BOp,XOp,YOp, LeftBumpOp, RightBumpOp, LeftLogoOp, RightLogoOp;
 
 
@@ -109,6 +109,7 @@ public class OI {
     SideBtnDr = new JoystickButton(driver, 2);
     Joystick7Dr = new JoystickButton(driver, 7);
     Joystick8Dr = new JoystickButton(driver, 8);
+    Joystick9Dr = new JoystickButton(driver,9);
     Joystick10Dr = new JoystickButton(driver, 10);
     Joystick11Dr = new JoystickButton(driver, 11);
     Joystick12Dr = new JoystickButton(driver, 12);
@@ -135,14 +136,16 @@ public class OI {
 
     //Gyro reset
     //Joystick7Dr.whenPressed(Robot.ShangoDT.resetGyro());
-    
+    // Have no idea if this will work
+    Joystick8Dr.whenPressed(new ShangoDrive());
+    Joystick9Dr.whenPressed(new ShangoFieldDrive());
   }
 
   public double getDriveX() {
     // For some reason getButton() doesn't like when you give it a button ... so Raw button 
     // is just giving it the value of Joystick7Dr (DRRM)
     if (this.driver.getRawButtonPressed(7)) {
-      //Robot.ShangoDT.resetGyro();
+      Robot.ShangoDT.resetGyro();
     }
     return driver.getX();
   }

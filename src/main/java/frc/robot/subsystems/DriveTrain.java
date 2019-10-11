@@ -13,7 +13,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import frc.robot.commands.*;
-import com.analog.adis16470.frc.ADIS16470_IMU;
+
+// Imports related to navx gyro
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.DriverStation;
 
 /**
  * Need to make drivetrain a static instance. For after BoB
@@ -31,7 +35,7 @@ public class DriveTrain extends Subsystem {
 
   //Define IMU for Robot Centric Drive/
   // Currently getting a checksum error, my bet is it's from the gyro DRRM
-  public static final ADIS16470_IMU RobotGyro = new ADIS16470_IMU(); 
+  public AHRS RobotGyro; 
 
   //
   public DriveTrain() {
@@ -41,16 +45,33 @@ public class DriveTrain extends Subsystem {
     LeftBack = new WPI_TalonSRX(10);
     RightBack = new WPI_TalonSRX(12);
     RobotDT = new MecanumDrive(LeftFront, LeftBack, RightFront, RightBack);
+
+    try {
+			/***********************************************************************
+			 * navX-MXP:
+			 * - Communication via RoboRIO MXP (SPI, I2C, TTL UART) and USB.            
+			 * - See http://navx-mxp.kauailabs.com/guidance/selecting-an-interface.
+			 * 
+			 * navX-Micro:
+			 * - Communication via I2C (RoboRIO MXP or Onboard) and USB.
+			 * - See http://navx-micro.kauailabs.com/guidance/selecting-an-interface.
+			 * 
+			 * Multiple navX-model devices on a single robot are supported.
+			 ************************************************************************/
+            RobotGyro = new AHRS(SPI.Port.kMXP); 
+        } catch (RuntimeException ex ) {
+            DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
+        }
+  }
      
         
-  }
 
   public void DriveShango(double x, double y, double z, double yaw){
     RobotDT.driveCartesian(x, y, z, yaw);
   }
 
-  public void DriveShangoGyro(double x, double y, double z) {
-    RobotDT.driveCartesian(x, y, z, RobotGyro.getAngleZ());
+  public void DriveShangoGyro(double x, double y, double z, double yaw0) {
+    RobotDT.driveCartesian(x, y, z, RobotGyro.getAngle()-yaw0);
   }
 
   @Override

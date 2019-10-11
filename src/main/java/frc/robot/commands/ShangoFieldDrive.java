@@ -6,56 +6,39 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
-
-import edu.wpi.first.wpilibj.RobotState;
-import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.OI;
 
-public class ShangoDrive extends Command {
-  public ShangoDrive() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+import edu.wpi.first.wpilibj.command.Command;
+
+
+public class ShangoFieldDrive extends Command {
+
+  // Need an intial angle for when you start doing field centric drive
+  private double yaw0;
+
+  public ShangoFieldDrive() {
     requires(Robot.ShangoDT);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+
+    // Get gyro angle of this point
+    yaw0 = Robot.ShangoDT.RobotGyro.getAngle();
   }
 
   // Called repeatedly when this Command is scheduled to run
-  
   @Override
   protected void execute() {
     double xDir, yDir, zDir;
-    if (OI.getInstance().LockX()) {
-      xDir = OI.getInstance().getDriveX();
-      yDir = 0;
-      zDir = 0;
-    } else if (OI.getInstance().LockY()){
-      xDir = 0;
-      yDir = OI.getInstance().getDriveY();
-      zDir = 0;
-    } else if (OI.getInstance().LockZ()){
-      xDir = 0;
-      yDir = 0;  
-      zDir = OI.getInstance().getDriveZ();  
-    } else {
-      xDir = OI.getInstance().getDriveX();
-      yDir = OI.getInstance().getDriveY();
-      zDir = OI.getInstance().getDriveZ();
-    }
 
-    //double Yaw = OI.getInstance().getYaw();
+    xDir = OI.getInstance().getDriveX();
+    yDir = OI.getInstance().getDriveY();
+    zDir = OI.getInstance().getDriveZ();
 
-    if (RobotState.isAutonomous()) { // When we're in Autonomous don't use robo-centric
-      Robot.ShangoDT.DriveShango(xDir, yDir, zDir, 0);
-      //Robot.ShangoDT.DriveShangoGyro(xDir, yDir, zDir);
-    } else { // When we're in teleop we want to use robo-centric. Not yet implemented
-      Robot.ShangoDT.DriveShango(xDir, yDir, zDir, 0); 
-      //Robot.ShangoDT.DriveShangoGyro(xDir, yDir, zDir);
-    }   
+    Robot.ShangoDT.DriveShangoGyro(xDir, yDir, zDir, yaw0);
   }
 
   // Make this return true when this Command no longer needs to run execute()
