@@ -44,6 +44,7 @@ public class DriveTrain extends Subsystem {
     RightFront = new WPI_TalonSRX(13);
     LeftBack = new WPI_TalonSRX(10);
     RightBack = new WPI_TalonSRX(12);
+    
     RobotDT = new MecanumDrive(LeftFront, LeftBack, RightFront, RightBack);
 
     try {
@@ -59,6 +60,7 @@ public class DriveTrain extends Subsystem {
 			 * Multiple navX-model devices on a single robot are supported.
 			 ************************************************************************/
             RobotGyro = new AHRS(SPI.Port.kMXP); 
+            //RobotGyro = new AHRS();
         } catch (RuntimeException ex ) {
             DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
         }

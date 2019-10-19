@@ -59,7 +59,7 @@ public class GPM extends Subsystem {
     //Initialize Limit Switches for GPM/
     DorsalLimitUp = new DigitalInput(0);
     DorsalLimitDown = new DigitalInput(1);
-    FourBarFwd = new DigitalInput(2);
+    FourBarFwd = new DigitalInput(5);// Used to be 2
     FourBarBack = new DigitalInput(3);
 
     //Initialize Potentiometers for GPM/
@@ -110,17 +110,18 @@ public class GPM extends Subsystem {
   public boolean isDown(){
     //If dorsal limit switch is down or pot is less than down pot value
     //Dorsal down limit is mechanical so invert get() value
-    return (!(this.DorsalLimitDown.get()) || (this.DorsalPot.get() <= 0.111));
+    return (!(this.DorsalLimitDown.get()));
   }
   public boolean isFwd(){
     // If fourbar fwd limit is set or pot is less than fwd pot value
     // Fourbar fwd is mechanical so invert get() value
-    return ( !(this.FourBarFwd.get()) || (this.FourBarPot.get() <= 0.48)) ;
+    //return ( !(this.FourBarFwd.get()) || (this.FourBarPot.get() <= 0.5)) ;
+    return ( (this.FourBarPot.get() <= 0.11)) ;
     
   }
   public boolean isBack(){
     // If fourbar back limit is set or fourbarpot value is greater than back pot value
-    return (this.FourBarBack.get() || (this.FourBarPot.get() >= 1.38));
+    return (this.FourBarBack.get() || (this.FourBarPot.get() >= 1.32));
   }
 
   public void DorsalOff() {
@@ -143,8 +144,8 @@ public class GPM extends Subsystem {
     SmartDashboard.putBoolean("Dorsal Lim Down", GPM.getInstance().isDown());
     SmartDashboard.putBoolean("Fourbar Lim Fwd", GPM.getInstance().isFwd());
     SmartDashboard.putData("Fourbar Lim Back", FourBarBack);
-    SmartDashboard.putData("Fourbar Pot", FourBarPot);
-    SmartDashboard.putData("Dorsal Pot", DorsalPot);
+    SmartDashboard.putNumber("Fourbar Pot", FourBarPot.get());
+    SmartDashboard.putNumber("Dorsal Pot", DorsalPot.get());
     SmartDashboard.putData("Left Line", LineSensorLeft);
     SmartDashboard.putData("Center Line", LineSensorCenter);
     SmartDashboard.putData("RightLine", LineSensorRight);

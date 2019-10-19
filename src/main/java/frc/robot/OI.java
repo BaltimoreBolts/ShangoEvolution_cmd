@@ -171,10 +171,10 @@ public class OI {
   
 
   
-  /*public double getYaw() {
+  public double getYaw() {
     // Prefer to do it this way so we're accessing ShangoDT object gyro DRRM
-    return Robot.ShangoDT.RobotGyro.getAngleZ();
-  }*/
+    return Robot.ShangoDT.RobotGyro.getAngle();
+  }
 
 
 }

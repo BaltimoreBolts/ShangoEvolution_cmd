@@ -26,7 +26,8 @@ public class ShangoFieldDrive extends Command {
   protected void initialize() {
 
     // Get gyro angle of this point
-    yaw0 = Robot.ShangoDT.RobotGyro.getAngle();
+    //yaw0 = Robot.ShangoDT.RobotGyro.getAngle();
+    yaw0 = 0;
   }
 
   // Called repeatedly when this Command is scheduled to run
