@@ -26,7 +26,7 @@ public class GoHomeFourBar extends Command {
   @Override
   protected void execute() {
     if(!GPM.getInstance().isBack()) {
-      GPM.getInstance().MoveBack(0.28);
+      GPM.getInstance().MoveBack(0.3);//0.28
     }
   }
 

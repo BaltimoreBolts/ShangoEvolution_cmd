@@ -116,12 +116,13 @@ public class GPM extends Subsystem {
     // If fourbar fwd limit is set or pot is less than fwd pot value
     // Fourbar fwd is mechanical so invert get() value
     //return ( !(this.FourBarFwd.get()) || (this.FourBarPot.get() <= 0.5)) ;
-    return ( (this.FourBarPot.get() <= 0.11)) ;
+    return ( (this.FourBarPot.get() <= 0.18)) ;
     
   }
   public boolean isBack(){
     // If fourbar back limit is set or fourbarpot value is greater than back pot value
-    return (this.FourBarBack.get() || (this.FourBarPot.get() >= 1.32));
+    //return (this.FourBarBack.get() || (this.FourBarPot.get() >= 0.252));
+    return (this.FourBarPot.get() >= 0.33);
   }
 
   public void DorsalOff() {
