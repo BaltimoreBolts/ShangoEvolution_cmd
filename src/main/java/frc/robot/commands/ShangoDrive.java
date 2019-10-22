@@ -37,10 +37,6 @@ public class ShangoDrive extends Command {
       xDir = 0;
       yDir = OI.getInstance().getDriveY();
       zDir = 0;
-    } else if (OI.getInstance().LockZ()){
-      xDir = 0;
-      yDir = 0;  
-      zDir = OI.getInstance().getDriveZ();  
     } else {
       xDir = OI.getInstance().getDriveX();
       yDir = OI.getInstance().getDriveY();

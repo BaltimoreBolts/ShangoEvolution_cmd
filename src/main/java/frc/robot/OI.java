@@ -64,7 +64,7 @@ public class OI {
   public Joystick driver, operator;
 
    //XBox Controller1 Buttons/
-   public Button TriggerDr,SideBtnDr,Joystick7Dr,Joystick8Dr, Joystick9Dr, Joystick10Dr, Joystick11Dr, Joystick12Dr;
+   public Button TriggerDr,SideBtnDr,Joystick7Dr,Joystick8Dr, Joystick9Dr,Joystick11Dr, Joystick12Dr;
    public Button AOp,BOp,XOp,YOp, LeftBumpOp, RightBumpOp, LeftLogoOp, RightLogoOp;
 
 
@@ -110,7 +110,6 @@ public class OI {
     Joystick7Dr = new JoystickButton(driver, 7);
     Joystick8Dr = new JoystickButton(driver, 8);
     Joystick9Dr = new JoystickButton(driver,9);
-    Joystick10Dr = new JoystickButton(driver, 10);
     Joystick11Dr = new JoystickButton(driver, 11);
     Joystick12Dr = new JoystickButton(driver, 12);
 
@@ -158,16 +157,15 @@ public class OI {
   public double getDriveZ() {
     return driver.getZ();
   }
-
+ 
   public boolean LockX() {
-    return this.Joystick10Dr.get();
+    return this.Joystick12Dr.get();
   }
+  
   public boolean LockY() {
     return this.Joystick11Dr.get();
   }
-  public boolean LockZ() {
-    return this.Joystick12Dr.get();
-  }
+ 
   
 
   
