@@ -22,14 +22,14 @@ public class GoHatchDorsal extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    GPM.getInstance().MoveDown(0.1);
+    GPM.getInstance().MoveDown(0.275);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     if (!GPM.getInstance().isDown()) {
-      GPM.getInstance().MoveDown(0.25);
+      GPM.getInstance().MoveDown(0.275);
     }
 }
   // Make this return true when this Command no longer needs to run execute()
@@ -40,7 +40,7 @@ public class GoHatchDorsal extends Command {
 
   @Override
   protected void end() {
-    GPM.getInstance().MoveDown(0.2);
+    GPM.getInstance().MoveDown(0.275);
   }
 
   // Called when another command which requires one or more of the same

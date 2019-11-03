@@ -20,7 +20,7 @@ public class GoHomeDorsal extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    GPM.getInstance().MoveDown(0.1);
+    GPM.getInstance().MoveDown(0.275);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -40,7 +40,7 @@ public class GoHomeDorsal extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    GPM.getInstance().MoveDown(0.2);
+    GPM.getInstance().MoveDown(0.275);
   }
 
   // Called when another command which requires one or more of the same

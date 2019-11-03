@@ -122,7 +122,7 @@ public class GPM extends Subsystem {
   public boolean isBack(){
     // If fourbar back limit is set or fourbarpot value is greater than back pot value
     //return (this.FourBarBack.get() || (this.FourBarPot.get() >= 0.252));
-    return (this.FourBarPot.get() >= 0.33);
+    return (this.FourBarPot.get() >= 0.26); // DRRM 11/1/2019 during Ramp Riot Calibration  
   }
 
   public void DorsalOff() {
