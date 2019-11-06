@@ -26,7 +26,7 @@ public class GoHomeFourBar extends Command {
   @Override
   protected void execute() {
     if(!GPM.getInstance().isBack()) {
-      GPM.getInstance().MoveBack(0.3);//0.28
+      GPM.getInstance().MoveBack(0.35);//0.28
     }
   }
 
@@ -39,7 +39,7 @@ public class GoHomeFourBar extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    GPM.getInstance().MoveBack(0.05);
+    GPM.getInstance().MoveBack(0.1);
   }
 
   // Called when another command which requires one or more of the same

@@ -89,6 +89,7 @@ public class GPM extends Subsystem {
   public void MoveFWD(double val){
    //Negative moves 4Bar fwd
     this.FourBarMotor1.set(ControlMode.PercentOutput, -val);
+    this.FourBarMotor2.set(ControlMode.PercentOutput, -val);
   }
   public void MoveBack(double val){
     this.FourBarMotor1.set(ControlMode.PercentOutput, val);
@@ -116,13 +117,13 @@ public class GPM extends Subsystem {
     // If fourbar fwd limit is set or pot is less than fwd pot value
     // Fourbar fwd is mechanical so invert get() value
     //return ( !(this.FourBarFwd.get()) || (this.FourBarPot.get() <= 0.5)) ;
-    return ( (this.FourBarPot.get() <= 0.18)) ;
+    return ( (this.FourBarPot.get() <= 0.11)) ;
     
   }
   public boolean isBack(){
     // If fourbar back limit is set or fourbarpot value is greater than back pot value
     //return (this.FourBarBack.get() || (this.FourBarPot.get() >= 0.252));
-    return (this.FourBarPot.get() >= 0.26); // DRRM 11/1/2019 during Ramp Riot Calibration  
+    return (this.FourBarPot.get() >= 0.22); // DRRM 11/1/2019 during Ramp Riot Calibration  
   }
 
   public void DorsalOff() {

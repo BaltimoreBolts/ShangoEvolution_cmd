@@ -26,7 +26,7 @@ public class GoHatchFourBar extends Command {
   @Override
   protected void execute() {
     if (!GPM.getInstance().isFwd()) {
-      GPM.getInstance().MoveFWD(0.35);
+      GPM.getInstance().MoveFWD(0.3);
     }
 }
   
