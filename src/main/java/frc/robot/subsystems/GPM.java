@@ -19,6 +19,10 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+
+//Import PID libraries
+import edu.wpi.first.wpilibj.PIDController;
+
 /**
  * Add your docs here.
  */
@@ -49,6 +53,15 @@ public class GPM extends Subsystem {
   //Define Line Sensor/
   public DigitalInput LineSensorLeft, LineSensorCenter, LineSensorRight;
 
+  // Define PID 
+  // TODO: Default values for now. Probably want to set these up as configurable on the screen.
+  public static final double kP = 1;
+  public static final double kI = 0.01;
+  public static final double kD = 0.1;
+  public PIDController m_pidFourBar;
+  public double fourbarPIDVal;
+
+
   public GPM(){
     //Initialize Motors for GPM/
     DorsalMotor1 = new WPI_VictorSPX(16);
@@ -77,6 +90,13 @@ public class GPM extends Subsystem {
     FourBarMotor1.configFactoryDefault();
     FourBarMotor2.configFactoryDefault();
 
+    DorsalMotor2.follow(DorsalMotor1);
+    FourBarMotor2.follow(FourBarMotor1);
+
+    //Initalize PID controller
+    m_pidFourBar = new PIDController(kP, kI, kD, FourBarPot, FourBarMotor1);
+    m_pidFourBar.setInputRange(0, 5); //TODO: idk what to set these ranges to. Need to check.
+
   }
 
   @Override
@@ -89,20 +109,25 @@ public class GPM extends Subsystem {
   public void MoveFWD(double val){
    //Negative moves 4Bar fwd
     this.FourBarMotor1.set(ControlMode.PercentOutput, -val);
-    this.FourBarMotor2.set(ControlMode.PercentOutput, -val);
+    //this.FourBarMotor2.set(ControlMode.PercentOutput, -val);
   }
   public void MoveBack(double val){
     this.FourBarMotor1.set(ControlMode.PercentOutput, val);
-    this.FourBarMotor2.set(ControlMode.PercentOutput, val);
+    //this.FourBarMotor2.set(ControlMode.PercentOutput, val);
   }
   public void MoveUp(double val){
     this.DorsalMotor1.set(ControlMode.PercentOutput, val);
-    this.DorsalMotor2.set(ControlMode.PercentOutput, val);
+    //this.DorsalMotor2.set(ControlMode.PercentOutput, val);
   }
   //Negative moves dorsal down
   public void MoveDown(double val){
     this.DorsalMotor1.set(ControlMode.PercentOutput, -val);
-    this.DorsalMotor2.set(ControlMode.PercentOutput, -val);
+    //this.DorsalMotor2.set(ControlMode.PercentOutput, -val);
+  }
+
+  public void goToShoot(double val){
+    m_pidFourBar.setSetpoint(val);
+
   }
   public boolean isUp(){
     // Dorsal up limit is mechanical so invert get() value
@@ -128,12 +153,12 @@ public class GPM extends Subsystem {
 
   public void DorsalOff() {
     this.DorsalMotor1.set(ControlMode.PercentOutput, 0);
-    this.DorsalMotor2.set(ControlMode.PercentOutput, 0);
+    //this.DorsalMotor2.set(ControlMode.PercentOutput, 0);
   }
 
   public void FourBarOff() {
     this.FourBarMotor1.set(ControlMode.PercentOutput, 0);
-    this.FourBarMotor2.set(ControlMode.PercentOutput, 0);
+    //this.FourBarMotor2.set(ControlMode.PercentOutput, 0);
   }
 
   @Override
