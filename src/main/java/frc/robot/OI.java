@@ -124,13 +124,14 @@ public class OI {
     //XOp.whenPressed(new StarBurstOff());
     AOp.whenPressed(new GoHatch());
     BOp.whenPressed(new GoHome());
+    XOp.whenPressed(new GoShootFourBar());
 
     //ADr.whenPressed(new GoHome());
     // Starburst open/close run for 1.0 seconds
     TriggerDr.whenPressed(new StarBurstClosed(1));
     SideBtnDr.whenPressed(new StarBurstOpen(1));
     //Intake functions
-    XOp.whenPressed(new EatCargo(1));
+    //XOp.whenPressed(new EatCargo(1));
     YOp.whenPressed(new SpitCargo(2));
 
     //Gyro reset

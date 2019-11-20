@@ -58,7 +58,7 @@ public class GPM extends Subsystem {
   public static final double kP = 1;
   public static final double kI = 0.01;
   public static final double kD = 0.1;
-  public PIDController m_pidFourBar;
+  public PIDController m_pidFourBar, m_pidDorsal;
   public double fourbarPIDVal;
 
 
@@ -96,7 +96,11 @@ public class GPM extends Subsystem {
     //Initalize PID controller
     m_pidFourBar = new PIDController(kP, kI, kD, FourBarPot, FourBarMotor1);
     m_pidFourBar.setInputRange(0, 5); //TODO: idk what to set these ranges to. Need to check.
-
+    m_pidFourBar.setPercentTolerance(2.5); // 2.5%? DRRM
+  
+    m_pidDorsal = new PIDController(kP, kI, kD, DorsalPot, DorsalMotor1);
+    m_pidDorsal.setInputRange(2,20);
+    m_pidDorsal.setPercentTolerance(3.5); 
   }
 
   @Override
@@ -127,7 +131,10 @@ public class GPM extends Subsystem {
 
   public void goToShoot(double val){
     m_pidFourBar.setSetpoint(val);
+  }
 
+  public void goToShootDorsal(double val){
+    m_pidDorsal.setSetpoint(val);
   }
   public boolean isUp(){
     // Dorsal up limit is mechanical so invert get() value

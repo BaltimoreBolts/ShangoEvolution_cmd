@@ -10,8 +10,8 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.GPM;
 
-public class GoShootFourBar extends Command {
-  public GoShootFourBar() {
+public class GoShootDorsal extends Command {
+  public GoShootDorsal() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(GPM.getInstance());
@@ -25,14 +25,13 @@ public class GoShootFourBar extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    GPM.getInstance().goToShoot(0.25); //To Do: figure out what this value should be/
+    GPM.getInstance().goToShootDorsal(0.25); //To Do: figure out what this value should be/
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return GPM.getInstance().m_pidFourBar.onTarget(); // When within 2.5%
-    //what should the "return" be??/
+    return false;
   }
 
   // Called once after isFinished returns true
